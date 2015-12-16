@@ -1,0 +1,32 @@
+Font Generator
+===================
+
+This project is used to pick font texts.
+
+Any font is picked to output new font for text.
+
+## Install docker image
+
+```sh
+docker pull peter1209/fontforge
+```
+
+## Support input format
+
+* ttf
+* svg
+* ttc
+* woff
+
+## Usage
+
+* **-i**: Input a font file
+* **-o**: Output a zip file
+* **-f**: Input a text file
+* **--webfont**: New font name
+
+```sh
+./generate-font.sh -i Hanzipen.ttc -o webfont.zip -f text.txt --webfont fontName
+```
+
+

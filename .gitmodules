@@ -1,0 +1,3 @@
+[submodule "fontcustom"]
+	path = fontcustom
+	url = https://github.com/FontCustom/fontcustom
