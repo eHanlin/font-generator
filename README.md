@@ -5,6 +5,12 @@ This project is used to pick font texts.
 
 Any font is picked to output new font for text.
 
+## Install git module
+
+```sh
+git submodule update
+```
+
 ## Install docker image
 
 ```sh
