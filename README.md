@@ -25,8 +25,20 @@ docker pull peter1209/fontforge
 * **-f**: Input a text file
 * **--webfont**: New font name
 
+**Run:**
+
 ```sh
 ./generate-font.sh -i Hanzipen.ttc -o webfont.zip -f text.txt --webfont fontName
 ```
 
+
+**Output files:**
+
+```sh
+fontName.tff
+fontName.svg
+fontName.woff
+fontName.css
+index.html
+```
 
