@@ -32,7 +32,7 @@ docker pull peter1209/fontforge
 ```
 
 
-**Output files:**
+**Output zip tree:**
 
 ```sh
 fontName.tff
