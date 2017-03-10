@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import uuid, zipfile, fontforge, re, os
 from . import template, util
+from os.path import realpath, dirname
+
+entry_point = dirname(realpath(__file__))
+eotlitetool_path = "{0}/../{1}".format(entry_point, "fontcustom/lib/fontcustom/scripts/eotlitetool.py")
 
 
 def generate( font_path, texts, output ):
@@ -50,7 +54,7 @@ def generate_web_font( font_path, texts, output, tmp_path = "", new_font_name = 
     write_web_font_css_file( new_font_name, css_path )
     write_demo_page( new_font_name, texts, demo_path )
 
-    eot_created = os.system('python fontcustom/lib/fontcustom/scripts/eotlitetool.py {0}'.format(ttf_path))
+    eot_created = os.system('python {0} {1}'.format(eotlitetool_path, ttf_path))
 
     zipf = zipfile.ZipFile( output, "w" )
     zipf.write(ttf_path, "{0}.tff".format(new_font_name))
@@ -60,8 +64,9 @@ def generate_web_font( font_path, texts, output, tmp_path = "", new_font_name = 
     zipf.write(css_path, "{0}.css".format(new_font_name))
     zipf.write(demo_path, "index.html")
     zipf.close()
+    util.delete_files([ttf_path, svg_path, woff_path, eot_path])
 
-def generate_base64_font_face(font_path, texts, output, tmp_path = "", new_font_name = "new_font"):
+def generate_base64_font_face(font_path, texts, tmp_path = "", new_font_name = "new_font"):
     name = uuid.uuid1().hex
     ttf_path = "{0}/{1}.ttf".format(tmp_path, name)
     woff_path = "{0}/{1}.woff".format(tmp_path, name)
@@ -69,9 +74,14 @@ def generate_base64_font_face(font_path, texts, output, tmp_path = "", new_font_
     generate( font_path, texts, ttf_path)
     generate( font_path, texts, woff_path)
 
-    eot_created = os.system('python fontcustom/lib/fontcustom/scripts/eotlitetool.py {0}'.format(ttf_path))
-    return template.create_font_face_base64(new_font_name, util.read_by_base64(eot_path), util.read_by_base64(woff_path), util.read_by_base64(ttf_path))
+    eot_created = os.system('python {0} {1}'.format(eotlitetool_path, ttf_path))
+    result = template.create_font_face_base64(new_font_name, util.read_by_base64(eot_path), util.read_by_base64(woff_path), util.read_by_base64(ttf_path))
+    util.delete_files([ttf_path, woff_path, eot_path])
+    return result
 
+def generate_base64_font_face_file(font_path, texts, output, tmp_path = "", new_font_name = "new_font"):
+    content = generate_base64_font_face(font_path, texts, tmp_path, new_font_name)
+    util.write_file(output, content)
     
 #generate("pro2.ttf", [u"扯",u"不"])
 

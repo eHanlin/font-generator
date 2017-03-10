@@ -49,3 +49,9 @@ fontName.css
 index.html
 ```
 
+## Build dockerfile
+
+```sh
+docker build --no-cache -t peter1209/fontforge-web-server:0.0.1 -f dockerfile/Dockerfile .
+```
+
