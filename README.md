@@ -30,6 +30,7 @@ docker pull peter1209/fontforge
 * **-o**: Output a zip file
 * **-f**: Input a text file
 * **--webfont**: New font name
+* **--base64**: Encode base64
 
 **Run:**
 
