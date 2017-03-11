@@ -1,9 +1,9 @@
 Font Generator
 ===================
 
-This project is used to pick font texts.
+This project is used to extract fonts.
 
-Any font is picked to output new font for text.
+It minify font's size when you don't need full fonts.
 
 ## Install git module
 
@@ -49,9 +49,11 @@ fontName.css
 index.html
 ```
 
-## Build dockerfile
+See [dockerhub](https://hub.docker.com/r/peter1209/font-generator-server/) if you need use **web server**.
+
+## Build dockerfile of web server
 
 ```sh
-docker build --no-cache -t peter1209/fontforge-web-server:0.0.1 -f dockerfile/Dockerfile .
+docker build --no-cache -t peter1209/font-generator-server -f dockerfile/Dockerfile .
 ```
 
