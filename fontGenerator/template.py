@@ -40,7 +40,7 @@ def create_font_face_base64(font_name, opentype, woff, truetype):
 
     css = """ 
         font-family: "{0}";
-        src: url(data:font/opentype;charset=utf-8;base64,{1}),
+        src: url(data:font/opentype;charset=utf-8;base64,{1}) format('embedded-opentype'),
             url(data:font/x-font-woff;charset=utf-8;base64,{2}) format('woff'),
             url(data:font/truetype;charset=utf-8;base64,{3}) format('truetype');
         font-weight: normal;
