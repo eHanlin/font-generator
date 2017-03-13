@@ -1,4 +1,5 @@
 #!/usr/bin/env python 
+# -*- coding: utf-8 -*-
 import sys
 from os.path import realpath, dirname
 from flask import Flask
@@ -20,7 +21,7 @@ app = Flask(__name__)
 def generate():
     input_json = request.get_json()
     font_name =  input_json.get("fontName").encode("utf-8")
-    input_text = input_json.get("text").encode("utf-8")
+    input_text = input_json.get("text")
     choice_font = input_json.get("fontBase").encode("utf-8")
 
     input_font_path = "{0}/fonts/{1}".format(project_root, choice_font)
