@@ -30,6 +30,13 @@ def generate():
 
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0")
+    #app.run(host = "0.0.0.0")
+    processes = 10
+    if len(sys.argv) > 1: processes = int(sys.argv[1])
+    from werkzeug.wsgi import DispatcherMiddleware
+    from werkzeug.serving import run_simple
+    application = DispatcherMiddleware(app)
+    print("processes: {0}".format(processes))
+    run_simple('0.0.0.0', 5000, application, processes = processes) 
 
 
