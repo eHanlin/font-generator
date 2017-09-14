@@ -31,6 +31,8 @@ def generate( font_path, texts, output ):
             print(val, e)
 
     new_font.generate(output)
+    font.close()
+    new_font.close()
 
 def write_web_font_css_file( new_font_name, path ):
     css = template.create_font_face(new_font_name, path)
