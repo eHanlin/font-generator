@@ -16,9 +16,9 @@ def write_file( path, data ):
         f.close()
 
 def read_by_base64(path):
-    f = open(path, "r")
-    data = f.read()
-    f.close()
+    with open(path, "r") as f:
+        data = f.read()
+        f.close()
     return base64.b64encode(data)
 
 
