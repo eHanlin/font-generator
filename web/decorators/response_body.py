@@ -3,6 +3,7 @@ from .wrapper import Wrapper
 from flask import Response
 import traceback
 import json
+import logging
  
 class ResponseBody( Wrapper ):
 
@@ -32,7 +33,7 @@ class ResponseBody( Wrapper ):
             data = self.__to_result(True, resp_result)
         except Exception as e:
             data = self.__to_result( False, None, str(e) )
-            print(traceback.format_exc())
+            logging.error(traceback.format_exc())
  
         return Response( json.dumps( data ) , mimetype="application/json" )
 

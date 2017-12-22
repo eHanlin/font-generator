@@ -5,8 +5,9 @@ def get_content(texts):
     if isinstance(texts, str) or isinstance(texts, unicode):
         file_path = texts
         with open(file_path, 'r') as f:
-            return list(f.read().decode("utf-8"))
+            result = list(f.read().decode("utf-8"))
             f.close()
+            return result
     else:
       return texts
 

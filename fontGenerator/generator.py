@@ -2,6 +2,7 @@
 import uuid, zipfile, fontforge, re, os
 from . import template, util
 from os.path import realpath, dirname
+import logging
 
 entry_point = dirname(realpath(__file__))
 eotlitetool_path = "{0}/../{1}".format(entry_point, "fontcustom/lib/fontcustom/scripts/eotlitetool.py")
@@ -11,6 +12,7 @@ def generate( font_path, texts, output ):
     font = fontforge.open(font_path)
     new_font = fontforge.font()
     new_font.encoding = 'UnicodeFull'
+    new_font.fontname = 'NewFont'
 
     texts = util.get_content(texts)
     
@@ -28,9 +30,12 @@ def generate( font_path, texts, output ):
             new_font.selection.select(("ranges",None), val, val)
             new_font.paste()
         except Exception as e:
-            print(val, e)
+            logging.error(val)
+            logging.error(e)
 
     new_font.generate(output)
+    font.clear()
+    new_font.clear()
     font.close()
     new_font.close()
 
