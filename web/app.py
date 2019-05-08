@@ -17,6 +17,11 @@ ROOT_PATH = "/fontGenerator"
 
 app = Flask(__name__)
 
+@app.route("{0}/".format(ROOT_PATH), methods = ["GET"])
+@ResponseBody()
+def index():
+    return ''
+
 @app.route("{0}/fonts/generate".format(ROOT_PATH), methods = ["POST"])
 @ResponseBody()
 def generate():
