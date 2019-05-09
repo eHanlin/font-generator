@@ -8,7 +8,8 @@ ADD fontcustom ${HOME}/fontcustom
 ADD fontGenerator ${HOME}/fontGenerator
 ADD web ${HOME}/web
 ADD fonts ${HOME}/fonts
-RUN apt-get install -y unzip
+RUN apt-get update
+RUN apt-get install -y unzip curl
 RUN chmod +x ${HOME}/web/app.py ${HOME}/entryPoint.sh
 Run wget -O - https://bootstrap.pypa.io/get-pip.py | python
 Run pip install -r /root/web/requirements.txt
